@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://4vwrqjegqwpj"]
+
+[ext_resource type="Script" uid="uid://ccd1k2qxslohl" path="res://scripts/player.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b8lam2n3p4qvs" path="res://Scenes/sword.tscn" id="6"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="2"]
+radius = 15.0
+height = 94.0
+
+[sub_resource type="Gradient" id="3"]
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="4"]
+gradient = SubResource("3")
+
+[sub_resource type="Curve" id="5"]
+_data = [Vector2(0.00501098, 0.5), 0.0, 0.0, 0, 0, Vector2(0.994989, 0.324), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="6"]
+curve = SubResource("5")
+
+[sub_resource type="ParticleProcessMaterial" id="7"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("6")
+color_ramp = SubResource("4")
+
+[node name="Player" type="Area2D"]
+z_index = 10
+collision_mask = 2
+script = ExtResource("1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("1")
+animation = &"right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("2")
+
+[node name="Trail" type="GPUParticles2D" parent="."]
+z_index = -1
+amount = 10
+speed_scale = 2.0
+process_material = SubResource("7")
+
+[node name="SwordSystem" parent="." instance=ExtResource("6")]
+position = Vector2(17, -32)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,174 @@
+[gd_scene load_steps=22 format=3 uid="uid://b8lam2n3p4qvs"]
+
+[ext_resource type="Script" uid="uid://dnqu8w7ym8y54" path="res://scripts/sword_system.gd" id="1"]
+[ext_resource type="Script" uid="uid://bueruxg21dxv6" path="res://scripts/attack_area.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bcv50auh4b3b7" path="res://assets/art/Sprites/Enemy04/attack01.png" id="2_hqx57"]
+[ext_resource type="Script" uid="uid://c81lptqy55td6" path="res://scripts/sword_audio.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://r2qdiknqjvuh" path="res://assets/art/Sprites/Enemy04/attack02.png" id="3_dllgs"]
+[ext_resource type="Texture2D" uid="uid://w34cdwsjsmb1" path="res://assets/art/Sprites/Enemy04/attack03.png" id="4_qeuqu"]
+[ext_resource type="Texture2D" uid="uid://dbaf8x08mtnie" path="res://assets/art/Sprites/Enemy04/attack04.png" id="5_x58x5"]
+[ext_resource type="Texture2D" uid="uid://b47nx5e6pg1co" path="res://assets/art/Sprites/Enemy04/attack05.png" id="6_7krr7"]
+[ext_resource type="Texture2D" uid="uid://v3byviul427k" path="res://assets/art/Sprites/Enemy04/attack06.png" id="7_wwqho"]
+[ext_resource type="Texture2D" uid="uid://bylaci33vdu3n" path="res://assets/art/Sprites/Enemy04/attack07.png" id="8_nqxon"]
+[ext_resource type="Texture2D" uid="uid://c7r6xreuysfyh" path="res://assets/art/Sprites/Enemy04/idle01.png" id="9_t8sfd"]
+[ext_resource type="Texture2D" uid="uid://be6vqvyn6f7m8" path="res://assets/art/Sprites/Enemy04/idle02.png" id="10_6p3g0"]
+[ext_resource type="Texture2D" uid="uid://de0y5d3powip2" path="res://assets/art/Sprites/Enemy04/idle03.png" id="11_rmuar"]
+[ext_resource type="Texture2D" uid="uid://ber1bm13swqj7" path="res://assets/art/Sprites/Enemy04/idle04.png" id="12_hs63m"]
+[ext_resource type="Texture2D" uid="uid://bk806y61vdfun" path="res://assets/art/Sprites/Enemy04/idle05.png" id="13_3cbd2"]
+[ext_resource type="Texture2D" uid="uid://b1pcoktha3u5r" path="res://assets/art/Sprites/Enemy04/idle06.png" id="14_j0a7e"]
+[ext_resource type="Texture2D" uid="uid://sl0l4b3mgkil" path="res://assets/art/Sprites/Enemy04/idle07.png" id="15_x0m8o"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqx57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dllgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qeuqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x58x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7krr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wwqho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nqxon")
+}],
+"loop": false,
+"name": &"attack1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqx57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dllgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qeuqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x58x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7krr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wwqho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nqxon")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqx57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dllgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qeuqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x58x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7krr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wwqho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nqxon")
+}],
+"loop": false,
+"name": &"attack3",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_t8sfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6p3g0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rmuar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hs63m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3cbd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_j0a7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x0m8o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(60, 104)
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(80, 110)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqx57"]
+radius = 16.0
+height = 60.0
+
+[node name="SwordSystem" type="Node2D"]
+script = ExtResource("1")
+
+[node name="SwordSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(25, 0)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("1")
+animation = &"idle"
+
+[node name="AttackAreas" type="Node2D" parent="."]
+
+[node name="Attack1Area" type="Area2D" parent="AttackAreas"]
+script = ExtResource("2")
+attack_type = "thrust"
+
+[node name="Attack1Shape" type="CollisionShape2D" parent="AttackAreas/Attack1Area"]
+position = Vector2(40, 27)
+shape = SubResource("2")
+
+[node name="Attack2Area" type="Area2D" parent="AttackAreas"]
+script = ExtResource("2")
+attack_type = "slash"
+
+[node name="Attack2Shape" type="CollisionShape2D" parent="AttackAreas/Attack2Area"]
+position = Vector2(42, 27)
+shape = SubResource("3")
+
+[node name="Attack3Area" type="Area2D" parent="AttackAreas"]
+script = ExtResource("2")
+attack_type = "spin"
+
+[node name="Attack3Shape" type="CollisionShape2D" parent="AttackAreas/Attack3Area"]
+position = Vector2(-15, 26)
+shape = SubResource("CapsuleShape2D_hqx57")
+
+[node name="SwordAudio" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("3")
